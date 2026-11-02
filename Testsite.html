@@ -13,282 +13,69 @@
             --text-light: #ffffff;
             --text-muted: #a0a0ab;
             --brand-orange: #ff5500;
-            --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
         body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-dark);
-            color: var(--text-light);
+            margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--text-light);
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            overflow-x: hidden;
-            -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden; -webkit-tap-highlight-color: transparent;
         }
-
         .notification {
-            position: fixed;
-            top: -150px;
-            left: 5%;
-            width: 90%;
-            background: #1c1c24;
-            color: var(--text-light);
-            padding: 20px;
-            border-radius: 16px;
-            border: 1px solid var(--brand-orange);
-            box-shadow: 0 12px 40px rgba(255, 85, 0, 0.25);
-            z-index: 1000;
-            transition: var(--transition-smooth);
-            box-sizing: border-box;
-            text-align: center;
-            font-size: 1rem;
-            line-height: 1.5;
+            position: fixed; top: -150px; left: 5%; width: 90%; background: #1c1c24;
+            color: var(--text-light); padding: 20px; border-radius: 16px;
+            border: 1px solid var(--brand-orange); box-shadow: 0 12px 40px rgba(255, 85, 0, 0.25);
+            z-index: 1000; transition: top 0.4s ease; box-sizing: border-box; text-align: center;
         }
-        .notification.show {
-            top: 20px;
-        }
-
-        .wrapper {
-            position: relative;
-            width: 100vw;
-            height: 100vh;
-        }
-
+        .notification.show { top: 20px; }
+        .wrapper { position: relative; width: 100vw; height: 100vh; }
         .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            pointer-events: none;
-            transition: var(--transition-smooth);
-            padding: 24px 20px;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0; pointer-events: none; transition: var(--transition-smooth);
+            padding: 24px 20px; box-sizing: border-box; display: flex; flex-direction: column;
         }
-
-        .slide.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        h2 {
-            font-size: 1.6rem;
-            font-weight: 800;
-            text-align: center;
-            margin: 10px 0 30px 0;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .services-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            max-width: 450px;
-            margin: 0 auto;
-            width: 100%;
-        }
-
+        .slide.active { opacity: 1; pointer-events: auto; }
+        h2 { font-size: 1.5rem; font-weight: 800; text-align: center; margin: 10px 0 30px 0; text-transform: uppercase; }
+        .services-list { display: flex; flex-direction: column; gap: 16px; max-width: 450px; margin: 0 auto; width: 100%; }
         .service-card {
-            background: var(--bg-card);
-            border: 1px solid #24242b;
-            border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-            height: 120px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            background: var(--bg-card); border: 1px solid #24242b; border-radius: 20px;
+            overflow: hidden; position: relative; cursor: pointer; transition: var(--transition-smooth); height: 110px;
         }
-
-        .image-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
-        }
-
+        .image-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
         .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.25;
-            filter: grayscale(100%);
-            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
-            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
-            transition: var(--transition-smooth);
+            width: 100%; height: 100%; object-fit: cover; opacity: 0.2; filter: grayscale(100%);
+            mask-image: linear-gradient(to bottom, black 30%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 30%, transparent 100%);
         }
-
-        .service-title {
-            position: absolute;
-            top: 45px;
-            left: 24px;
-            font-size: 1.25rem;
-            font-weight: 700;
-            z-index: 2;
-            transition: var(--transition-smooth);
-        }
-
-        .service-details {
-            position: absolute;
-            bottom: -180px;
-            left: 24px;
-            right: 24px;
-            z-index: 2;
-            opacity: 0;
-            transition: var(--transition-smooth);
-        }
-
-        .service-desc {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 12px;
-            line-height: 1.5;
-        }
-
-        .service-meta {
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: var(--text-gold);
-        }
-
+        .service-title { position: absolute; top: 40px; left: 24px; font-size: 1.2rem; font-weight: 700; z-index: 2; transition: var(--transition-smooth); }
+        .service-details { position: absolute; bottom: -180px; left: 24px; right: 24px; z-index: 3; opacity: 0; transition: var(--transition-smooth); }
+        .service-desc { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 12px; line-height: 1.4; }
+        .service-meta { font-size: 0.95rem; font-weight: 700; margin-bottom: 16px; color: var(--text-gold); }
         .book-btn {
-            background: var(--brand-orange);
-            color: var(--text-light);
-            border: none;
-            width: 100%;
-            padding: 16px;
-            border-radius: 14px;
-            font-weight: 700;
-            font-size: 1rem;
-            text-transform: uppercase;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 85, 0, 0.3);
+            background: var(--brand-orange); color: var(--text-light); border: none; width: 100%;
+            padding: 14px; border-radius: 12px; font-weight: 700; font-size: 0.95rem; text-transform: uppercase; cursor: pointer;
         }
-
-        .services-list.has-active .service-card:not(.selected) {
-            opacity: 0;
-            transform: translateY(20px) scale(0.9);
-            pointer-events: none;
-        }
-
-        .service-card.selected {
-            height: 310px;
-            border-color: var(--brand-orange);
-            background: #181820;
-        }
-
-        .service-card.selected .image-container img {
-            opacity: 0.4;
-            filter: grayscale(0%);
-        }
-
-        .service-card.selected .service-title {
-            top: 24px;
-            color: var(--brand-orange);
-        }
-
-        .service-card.selected .service-details {
-            bottom: 24px;
-            opacity: 1;
-        }
-
-        .schedule-container {
-            max-width: 450px;
-            margin: 0 auto;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-            height: calc(100vh - 120px);
-        }
-
-        .section-title {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
-
-        .grid-options {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-        }
-
-        .option-item {
-            border: 1px solid #24242b;
-            border-radius: 14px;
-            padding: 16px 10px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            background: var(--bg-card);
-        }
-
-        .option-item strong {
-            font-size: 1.05rem;
-        }
-
-        .option-item .day-name {
-            display: block;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
-
-        .option-item.active {
-            border-color: var(--brand-orange);
-            background: rgba(255, 85, 0, 0.1);
-            color: var(--brand-orange);
-        }
-
-        .final-btn {
-            background: var(--text-light);
-            color: var(--bg-dark);
-            border: none;
-            width: 100%;
-            padding: 18px;
-            border-radius: 16px;
-            font-size: 1.1rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            margin-top: auto;
-            cursor: pointer;
-        }
-
-        .back-link {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-top: 8px;
-            cursor: pointer;
-            text-decoration: none;
-        }
+        .services-list.has-active .service-card:not(.selected) { opacity: 0; transform: scale(0.9); pointer-events: none; }
+        .service-card.selected { height: 280px; border-color: var(--brand-orange); }
+        .service-card.selected .service-title { top: 20px; color: var(--brand-orange); }
+        .service-card.selected .service-details { bottom: 20px; opacity: 1; }
+        .schedule-container { max-width: 450px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; gap: 20px; height: calc(100vh - 120px); }
+        .section-title { font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; font-weight: 600; }
+        .grid-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .option-item { border: 1px solid #24242b; border-radius: 12px; padding: 14px 10px; text-align: center; cursor: pointer; background: var(--bg-card); }
+        .option-item span { display: block; font-size: 0.7rem; color: var(--text-muted); margin-top: 4px; }
+        .option-item.active { border-color: var(--brand-orange); background: rgba(255, 85, 0, 0.1); color: var(--brand-orange); }
+        .final-btn { background: var(--text-light); color: var(--bg-dark); border: none; width: 100%; padding: 16px; border-radius: 14px; font-size: 1rem; font-weight: 800; text-transform: uppercase; margin-top: auto; cursor: pointer; }
+        .back-link { text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 10px; cursor: pointer; }
     </style>
 </head>
 <body>
     <div id="notification" class="notification"></div>
     <div class="wrapper">
-        
-        <!-- СЛАЙД 1 -->
         <div id="slide-services" class="slide active">
             <h2>Выберите услугу</h2>
             <div class="services-list" id="services-list">
-                
                 <div class="service-card" onclick="selectService(this, 'Мужская короткая стрижка', '60 BYN', '45 минут')">
-                    <div class="image-container">
-                        <img src="https://unsplash.com">
-                    </div>
+                    <div class="image-container"><img src="https://unsplash.com" alt="img"></div>
                     <div class="service-title">Короткая мужская стрижка</div>
                     <div class="service-details">
                         <div class="service-desc">Премиальный классический силуэт, проработка геометрии и идеальный фейд.</div>
@@ -296,11 +83,8 @@
                         <button class="book-btn" onclick="goToSchedule(event)">Запись</button>
                     </div>
                 </div>
-
                 <div class="service-card" onclick="selectService(this, 'Удлиненная мужская стрижка', '60 BYN', '45 минут')">
-                    <div class="image-container">
-                        <img src="https://unsplash.com">
-                    </div>
+                    <div class="image-container"><img src="https://unsplash.com" alt="img"></div>
                     <div class="service-title">Удлиненная мужская стрижка</div>
                     <div class="service-details">
                         <div class="service-desc">Индивидуальное моделирование формы для длинных и средних волос.</div>
@@ -308,11 +92,8 @@
                         <button class="book-btn" onclick="goToSchedule(event)">Запись</button>
                     </div>
                 </div>
-
                 <div class="service-card" onclick="selectService(this, 'Стрижка под 0', '50 BYN', '40 минут')">
-                    <div class="image-container">
-                        <img src="https://unsplash.com">
-                    </div>
+                    <div class="image-container"><img src="https://unsplash.com" alt="img"></div>
                     <div class="service-title">Стрижка под 0</div>
                     <div class="service-details">
                         <div class="service-desc">Абсолютно гладкое бритьё или минимальный срез машинкой. Стильно и аккуратно.</div>
@@ -320,29 +101,19 @@
                         <button class="book-btn" onclick="goToSchedule(event)">Запись</button>
                     </div>
                 </div>
-
             </div>
         </div>
-
-        <!-- СЛАЙД 2 -->
         <div id="slide-date" class="slide">
             <h2>Детали визита</h2>
             <div class="schedule-container">
                 <div>
                     <div class="section-title">Доступные даты</div>
                     <div class="grid-options">
-                        <div class="option-item active" onclick="selectOption(this, 'date', '2 ноября')">
-                            <strong>2 ноя</strong><span class="day-name">Пн</span>
-                        </div>
-                        <div class="option-item" onclick="selectOption(this, 'date', '3 ноября')">
-                            <strong>3 ноя</strong><span class="day-name">Вт</span>
-                        </div>
-                        <div class="option-item" onclick="selectOption(this, 'date', '4 ноября')">
-                            <strong>4 ноя</strong><span class="day-name">Ср</span>
-                        </div>
+                        <div class="option-item active" onclick="selectOption(this, 'date', '2 ноября')"><strong>2 ноя</strong><span>Пн</span></div>
+                        <div class="option-item" onclick="selectOption(this, 'date', '3 ноября')"><strong>3 ноя</strong><span>Вт</span></div>
+                        <div class="option-item" onclick="selectOption(this, 'date', '4 ноября')"><strong>4 ноя</strong><span>Ср</span></div>
                     </div>
                 </div>
-
                 <div>
                     <div class="section-title">Свободное время</div>
                     <div class="grid-options">
@@ -351,70 +122,32 @@
                         <div class="option-item" onclick="selectOption(this, 'time', '17:00')">17:00</div>
                     </div>
                 </div>
-
                 <button class="final-btn" onclick="confirmBooking()">Подтвердить запись</button>
                 <div class="back-link" onclick="goBack()">← К выбору услуг</div>
             </div>
         </div>
     </div>
     <script>
-        const tg = window.Telegram.WebApp;
-        tg.ready();
-        tg.expand();
-
-        let bookingData = {
-            service: '',
-            price: '',
-            duration: '',
-            date: '2 ноября',
-            time: '12:00'
-        };
-
+        const tg = window.Telegram.WebApp; tg.ready(); tg.expand();
+        let bookingData = { service: '', price: '', duration: '', date: '2 ноября', time: '12:00' };
         function selectService(card, serviceName, price, duration) {
             const list = document.getElementById('services-list');
-            if (card.classList.contains('selected')) {
-                card.classList.remove('selected');
-                list.classList.remove('has-active');
-                return;
-            }
+            if (card.classList.contains('selected')) { card.classList.remove('selected'); list.classList.remove('has-active'); return; }
             document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
-            bookingData.service = serviceName;
-            bookingData.price = price;
-            bookingData.duration = duration;
-            card.classList.add('selected');
-            list.classList.add('has-active');
+            bookingData.service = serviceName; bookingData.price = price; bookingData.duration = duration;
+            card.classList.add('selected'); list.classList.add('has-active');
         }
-
-        function goToSchedule(event) {
-            event.stopPropagation(); 
-            document.getElementById('slide-services').classList.remove('active');
-            document.getElementById('slide-date').classList.add('active');
-        }
-
-        function goBack() {
-            document.getElementById('slide-date').classList.remove('active');
-            document.getElementById('slide-services').classList.add('active');
-        }
-
-        function selectOption(element, type, value) {
-            element.parentElement.querySelectorAll('.option-item').forEach(item => item.classList.remove('active'));
-            element.classList.add('active');
-            bookingData[type] = value;
-        }
-
+        function goToSchedule(event) { event.stopPropagation(); document.getElementById('slide-services').classList.remove('active'); document.getElementById('slide-date').classList.add('active'); }
+        function goBack() { document.getElementById('slide-date').classList.remove('active'); document.getElementById('slide-services').classList.add('active'); }
+        function selectOption(element, type, value) { element.parentElement.querySelectorAll('.option-item').forEach(item => item.classList.remove('active')); element.classList.add('active'); bookingData[type] = value; }
         function confirmBooking() {
             const notify = document.getElementById('notification');
             notify.innerHTML = `Вы успешно записаны!<br>⚡ <b>${bookingData.service}</b><br>📅 ${bookingData.date} в ${bookingData.time}<br>💵 Стоимость: ${bookingData.price}`;
             notify.classList.add('show');
-
             setTimeout(() => {
                 notify.classList.remove('show');
                 const textResult = `Подтверждена запись: ${bookingData.service}, ${bookingData.date}, ${bookingData.time}, стоимость ${bookingData.price}`;
-                if (tg.initData) {
-                    tg.sendData(textResult);
-                } else {
-                    alert(textResult);
-                }
+                if (tg.initData) { tg.sendData(textResult); } else { alert(textResult); }
                 tg.close();
             }, 3500);
         }
