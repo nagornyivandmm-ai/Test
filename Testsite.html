@@ -4,15 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Svinya Barber</title>
-    <!-- Официальный скрипт Telegram -->
     <script src="https://telegram.org"></script>
     <style>
         :root {
             --bg-color: #111111;
             --card-bg-color: #1e1e1e;
             --text-color: #ffffff;
-            --hint-color: #aaaaaa;
             --accent-color: #2481cc;
+            --success-color: #31b54a;
         }
 
         body {
@@ -24,8 +23,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            -webkit-user-select: none;
             user-select: none;
+            -webkit-user-select: none;
         }
 
         .container {
@@ -37,7 +36,6 @@
             text-align: center;
             font-size: 20px;
             font-weight: 600;
-            letter-spacing: 0.5px;
             text-transform: uppercase;
             margin: 20px 0 24px 0;
         }
@@ -85,43 +83,86 @@
         .service-name {
             font-size: 16px;
             font-weight: 500;
-            line-height: 1.4;
+        }
+
+        /* Экран успешного выбора */
+        #success-screen {
+            display: none;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .success-icon {
+            width: 90px;
+            height: 90px;
+            background-color: rgba(49, 181, 74, 0.1);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .success-icon svg {
+            width: 50px;
+            height: 50px;
+            fill: var(--success-color);
+        }
+
+        .success-text {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .success-subtext {
+            color: #aaaaaa;
+            font-size: 15px;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="title">Выберите услугу</div>
-
-    <div class="services-list">
-        <div class="service-card" data-service="Короткая мужская стрижка">
-            <div class="service-icon">
-                <svg viewBox="0 0 24 24"><path d="M19.5 3.5L18 2l-4.5 4.5L9 2 7.5 3.5 12 8l-8 8v5h5l8-8 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5zM6.8 19H6v-.8l6.7-6.7.8.8L6.8 19z"/></svg>
+    <!-- Экран с кнопками -->
+    <div id="catalog-screen">
+        <div class="title">Выберите услугу</div>
+        <div class="services-list">
+            <div class="service-card" data-service="Короткая мужская стрижка">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M19.5 3.5L18 2l-4.5 4.5L9 2 7.5 3.5 12 8l-8 8v5h5l8-8 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5zM6.8 19H6v-.8l6.7-6.7.8.8L6.8 19z"/></svg>
+                </div>
+                <div class="service-name">Короткая мужская стрижка</div>
             </div>
-            <div class="service-name">Короткая мужская стрижка</div>
-        </div>
 
-        <div class="service-card" data-service="Удлиненная мужская стрижка">
-            <div class="service-icon">
-                <svg viewBox="0 0 24 24"><path d="M19.5 3.5L18 2l-4.5 4.5L9 2 7.5 3.5 12 8l-8 8v5h5l8-8 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5zM6.8 19H6v-.8l6.7-6.7.8.8L6.8 19z"/></svg>
+            <div class="service-card" data-service="Удлиненная мужская стрижка">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M19.5 3.5L18 2l-4.5 4.5L9 2 7.5 3.5 12 8l-8 8v5h5l8-8 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5zM6.8 19H6v-.8l6.7-6.7.8.8L6.8 19z"/></svg>
+                </div>
+                <div class="service-name">Удлиненная мужская стрижка</div>
             </div>
-            <div class="service-name">Удлиненная мужская стрижка</div>
-        </div>
 
-        <div class="service-card" data-service="Стрижка под 0">
-            <div class="service-icon">
-                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+            <div class="service-card" data-service="Стрижка под 0">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+                </div>
+                <div class="service-name">Стрижка под 0</div>
             </div>
-            <div class="service-name">Стрижка под 0</div>
         </div>
+    </div>
+
+    <!-- Экран завершения -->
+    <div id="success-screen">
+        <div class="success-icon">
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+        </div>
+        <div class="success-text" id="chosen-title">Услуга выбрана!</div>
+        <div class="success-subtext">Вы можете закрыть это окно.</div>
     </div>
 </div>
 
 <script>
-    // Инициализация интерфейса Telegram
     const tg = window.Telegram.WebApp;
-    
     if (tg) {
         tg.ready();
         tg.expand();
@@ -129,29 +170,20 @@
 
     document.querySelectorAll('.service-card').forEach(card => {
         card.addEventListener('click', () => {
-            const selectedService = card.getAttribute('data-service');
+            const serviceName = card.getAttribute('data-service');
 
-            // 1. Показываем нативное всплывающее окно Telegram (сработает 100% при любом запуске)
-            if (tg && tg.showAlert) {
-                tg.showAlert(`Вы успешно выбрали услугу: ${selectedService}`, () => {
-                    // Этот код выполнится ПОСЛЕ того, как пользователь нажмет кнопку «ОК»
-                    
-                    // 2. Пробуем отправить данные боту
-                    try {
-                        tg.sendData(JSON.stringify({ service: selectedService }));
-                    } catch (e) {
-                        console.log("Ограничение sendData обйдено");
-                    }
+            // ПРАВКА: Полностью переключаем видимость экранов в HTML.
+            // Это сработает БЕЗ участия серверов Телеграма, прямо на устройстве.
+            document.getElementById('catalog-screen').style.display = 'none';
+            document.getElementById('chosen-title').innerText = serviceName;
+            document.getElementById('success-screen').style.display = 'block';
 
-                    // 3. Закрываем Mini App
-                    try {
-                        tg.close();
-                    } catch (e) {}
-                });
-            } else {
-                // Запасной вариант для обычного браузера на ПК
-                alert(`Выбрано: ${selectedService}`);
-            }
+            // Фоновая попытка закрыть приложение через API
+            setTimeout(() => {
+                if (tg && tg.close) {
+                    tg.close();
+                }
+            }, 1000);
         });
     });
 </script>
